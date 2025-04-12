@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import "../../global.css"
 import {OnboardingScreen} from "../components/onboarding";
-import {LoginScreen} from "../components/login";
+import {LoginScreen} from "../components/auth/login";
 import {DarkTheme, DefaultTheme, NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {Routes} from "../routes";
 import {useColorScheme} from "react-native";
+import {RegisterScreen} from "../components/auth/register";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,9 +16,10 @@ export const App = () => {
   return (
     <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={Routes.onboarding} options={{  }}
+        <Stack.Screen name={Routes.onboarding}
                       component={OnboardingScreen}/>
         <Stack.Screen name={Routes.login} component={LoginScreen}/>
+        <Stack.Screen name={Routes.register} component={RegisterScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

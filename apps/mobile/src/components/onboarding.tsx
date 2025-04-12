@@ -106,7 +106,8 @@ export const OnboardingScreen = ({ navigation }: any) => {
       </View>
 
       <View className="absolute bottom-0 left-0 right-0 px-6 py-4 shadow-lg">
-        <TouchableOpacity className="items-center rounded-full bg-purple-600 py-4 mb-3">
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.register)}
+                          className="items-center rounded-full bg-purple-600 py-4 mb-3">
           <Text className="text-white font-semibold" style={{ fontSize: 16 }}>Get Started</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate(Routes.login)}
