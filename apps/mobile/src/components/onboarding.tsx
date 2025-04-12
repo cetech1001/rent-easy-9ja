@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { Pagination, ICarouselInstance } from "react-native-reanimated-carousel";
+import {Routes} from "../routes";
 
 const window = Dimensions.get("window");
 const slides = [
@@ -31,7 +32,7 @@ const slides = [
   }
 ];
 
-export const OnboardingScreen = () => {
+export const OnboardingScreen = ({ navigation }: any) => {
   const ref = React.useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
 
@@ -43,11 +44,10 @@ export const OnboardingScreen = () => {
   };
 
   const colorScheme = useColorScheme();
-  const themeName = colorScheme === 'dark' ? 'dark' : '';
 
   return (
-    <SafeAreaView className={`flex-1 ${themeName} bg-background`}>
-      <View className="absolute bg-background flex-row justify-between items-center top-20 left-0 right-0 px-4 py-3 z-50">
+    <SafeAreaView className={`flex-1 text-base-content`}>
+      <View className="absolute flex-row justify-between items-center top-20 left-0 right-0 px-4 py-3 z-50">
         <View className="flex-row items-center">
           <Image
             source={{ uri: '#' }}
@@ -55,7 +55,7 @@ export const OnboardingScreen = () => {
           />
           <Text className="text-lg font-bold text-purple-600" style={{ fontSize: 18 }}>Rent Easy 9ja</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.login)}>
           <Text className="text-gray-500 text-sm">Skip</Text>
         </TouchableOpacity>
       </View>
@@ -105,11 +105,12 @@ export const OnboardingScreen = () => {
         />
       </View>
 
-      <View className="absolute bottom-0 left-0 right-0 bg-background px-6 py-4 shadow-lg">
+      <View className="absolute bottom-0 left-0 right-0 px-6 py-4 shadow-lg">
         <TouchableOpacity className="items-center rounded-full bg-purple-600 py-4 mb-3">
           <Text className="text-white font-semibold" style={{ fontSize: 16 }}>Get Started</Text>
         </TouchableOpacity>
-        <TouchableOpacity className="items-center rounded-full border border-purple-600 text-purple-600 py-4">
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.login)}
+                          className="items-center rounded-full border border-purple-600 text-purple-600 py-4">
           <Text className="font-semibold text-purple-600" style={{ fontSize: 16 }}>I already have an account</Text>
         </TouchableOpacity>
       </View>
