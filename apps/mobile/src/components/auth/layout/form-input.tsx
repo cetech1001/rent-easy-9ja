@@ -11,6 +11,7 @@ interface IProps {
   type?: KeyboardType;
   size?: number;
   secureTextEntry?: boolean;
+  height?: string;
 }
 
 export const FormInput: FC<IProps> = (props) => {
@@ -25,13 +26,13 @@ export const FormInput: FC<IProps> = (props) => {
       <View className="flex-row items-center">
         <FontAwesome5
           name={props.icon}
-          size={props.size || 24}
+          size={props.size || 16}
           color={isSelected ? "#7e22ce" : "#9ca3af"}
           style={{ position: 'absolute', left: 12 }}
         />
         <TextInput onFocus={() => setIsSelected(true)} onBlur={() => setIsSelected(false)}
                    keyboardType={props.type} secureTextEntry={props.secureTextEntry && !showContent} value={props.value}
-                   className={`w-full pl-10 pr-4 py-3 h-16 rounded-lg border text-base-900 ${isSelected ? 'border-purple-600' : 'border-gray-200'}`}
+                   className={`w-full pl-10 pr-4 py-3 ${props.height || 'h-11'} rounded-lg border text-base-900 ${isSelected ? 'border-purple-600' : 'border-gray-200'}`}
                    placeholder={props.placeholder} onChangeText={props.setValue}
         />
         {props.secureTextEntry && (

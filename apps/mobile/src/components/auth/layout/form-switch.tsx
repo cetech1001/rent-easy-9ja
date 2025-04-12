@@ -1,10 +1,10 @@
 import {Switch, Text, View} from "react-native";
-import React, {Dispatch, FC, SetStateAction} from "react";
+import React, {Dispatch, FC, ReactNode, SetStateAction} from "react";
 
 interface IProps {
   value: boolean;
   setValue: Dispatch<SetStateAction<boolean>>;
-  label: string;
+  label: string | ReactNode;
 }
 
 export const FormSwitch: FC<IProps> = (props) => {

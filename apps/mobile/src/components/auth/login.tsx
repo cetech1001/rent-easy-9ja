@@ -26,19 +26,19 @@ export const LoginScreen = ({ navigation }: any) => {
         <PageTitle title={'How far!'} description={'Sign in to continue your house hunting journey'}/>
 
         <View className="flex-row gap-4 mb-8">
-          <RoleTab role={AccessRole.tenant} activeRole={role} setRole={setRole}/>
-          <RoleTab role={AccessRole.landlord} activeRole={role} setRole={setRole}/>
+          <RoleTab role={AccessRole.tenant} activeRole={role} setRole={setRole} size={'lg'}/>
+          <RoleTab role={AccessRole.landlord} activeRole={role} setRole={setRole} size={'lg'}/>
         </View>
 
         <View className="mb-6">
           <View className="mt-4">
             <FormInput label={'Email Address'} icon={'envelope'} placeholder={'Enter your email address'}
-                       type={'email-address'} value={email} setValue={setEmail}/>
+                       type={'email-address'} size={24} height={'h-16'} value={email} setValue={setEmail}/>
           </View>
 
           <View className="mt-4">
             <FormInput label={'Password'} icon={'lock'} placeholder={'Enter your password'}
-                       secureTextEntry={true} value={password} setValue={setPassword}/>
+                       secureTextEntry={true} size={24} height={'h-16'} value={password} setValue={setPassword}/>
           </View>
 
           <View className="flex-row items-center justify-between mt-4">
