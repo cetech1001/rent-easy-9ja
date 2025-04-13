@@ -50,7 +50,7 @@ export const VerifyEmailScreen = () => {
     <SafeAreaView className="flex-1">
       <Header/>
 
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="pt-16 px-6">
+      <View className="pt-16 px-6">
         <PageTitle title={'Verify Your Email'} description={`We've sent a verification code to${'\n'}example@email.com`}/>
 
         <View className="flex justify-center mb-8">
@@ -110,7 +110,7 @@ export const VerifyEmailScreen = () => {
             <Text className="text-purple-600 font-medium">Change email address</Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

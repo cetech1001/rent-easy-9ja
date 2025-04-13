@@ -43,7 +43,7 @@ export const LoginScreen = ({ navigation }: any) => {
 
           <View className="flex-row items-center justify-between mt-4">
             <FormSwitch value={remember} setValue={setRemember} label={'Remember me'}/>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate(Routes.forgotPassword)}>
               <Text className="text-sm text-purple-600 font-medium">Forgot Password?</Text>
             </TouchableOpacity>
           </View>

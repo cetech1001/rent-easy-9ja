@@ -8,6 +8,7 @@ import {Routes} from "../routes";
 import {useColorScheme} from "react-native";
 import {RegisterScreen} from "../components/auth/register";
 import {VerifyEmailScreen} from "../components/auth/verify-email";
+import {ForgotPasswordScreen} from "../components/auth/forgot-password";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export const App = () => {
         <Stack.Screen name={Routes.login} component={LoginScreen}/>
         <Stack.Screen name={Routes.register} component={RegisterScreen}/>
         <Stack.Screen name={Routes.verifyEmail} component={VerifyEmailScreen}/>
+        <Stack.Screen name={Routes.forgotPassword} component={ForgotPasswordScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
