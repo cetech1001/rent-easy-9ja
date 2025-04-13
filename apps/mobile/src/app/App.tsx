@@ -7,6 +7,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {Routes} from "../routes";
 import {useColorScheme} from "react-native";
 import {RegisterScreen} from "../components/auth/register";
+import {VerifyEmailScreen} from "../components/auth/verify-email";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,11 +16,13 @@ export const App = () => {
 
   return (
     <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName={Routes.onboarding}
+                       screenOptions={{ headerShown: false }}>
         <Stack.Screen name={Routes.onboarding}
                       component={OnboardingScreen}/>
         <Stack.Screen name={Routes.login} component={LoginScreen}/>
         <Stack.Screen name={Routes.register} component={RegisterScreen}/>
+        <Stack.Screen name={Routes.verifyEmail} component={VerifyEmailScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
