@@ -9,6 +9,7 @@ import {useColorScheme} from "react-native";
 import {RegisterScreen} from "../components/auth/register";
 import {VerifyEmailScreen} from "../components/auth/verify-email";
 import {ForgotPasswordScreen} from "../components/auth/forgot-password";
+import {ResetPasswordScreen} from "../components/auth/reset-password";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +18,7 @@ export const App = () => {
 
   return (
     <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator initialRouteName={Routes.onboarding}
+      <Stack.Navigator initialRouteName={Routes.resetPassword}
                        screenOptions={{ headerShown: false }}>
         <Stack.Screen name={Routes.onboarding}
                       component={OnboardingScreen}/>
@@ -25,6 +26,7 @@ export const App = () => {
         <Stack.Screen name={Routes.register} component={RegisterScreen}/>
         <Stack.Screen name={Routes.verifyEmail} component={VerifyEmailScreen}/>
         <Stack.Screen name={Routes.forgotPassword} component={ForgotPasswordScreen}/>
+        <Stack.Screen name={Routes.resetPassword} component={ResetPasswordScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

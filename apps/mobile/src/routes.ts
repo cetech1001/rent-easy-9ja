@@ -4,4 +4,5 @@ export const Routes = {
   register: 'Register',
   verifyEmail: 'VerifyEmail',
   forgotPassword: 'ForgotPassword',
+  resetPassword: 'ResetPassword',
 }
