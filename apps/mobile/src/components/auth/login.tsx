@@ -3,11 +3,11 @@ import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native';
 import {Routes} from "../../routes";
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
-import {FormInput} from "./layout/form-input";
+import {FormInput} from "./partials/form-input";
 import {AccessRole} from "../../helper";
-import {RoleTab} from "./layout/role-tab";
-import {FormSwitch} from "./layout/form-switch";
-import {SSO} from "./layout/sso";
+import {RoleTab} from "./partials/role-tab";
+import {FormSwitch} from "./partials/form-switch";
+import {SSO} from "./partials/sso";
 
 
 export const LoginScreen = ({ navigation }: any) => {

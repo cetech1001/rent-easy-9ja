@@ -46,7 +46,7 @@ export const OnboardingScreen = ({ navigation }: any) => {
   const colorScheme = useColorScheme();
 
   return (
-    <SafeAreaView className={`flex-1 text-base-content`}>
+    <SafeAreaView className={"flex-1"}>
       <View className="absolute flex-row justify-between items-center top-20 left-0 right-0 px-4 py-3 z-50">
         <View className="flex-row items-center">
           <Image

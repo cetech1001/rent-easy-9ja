@@ -4,11 +4,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
 import {AccessRole} from "../../helper";
-import {RoleTab} from "./layout/role-tab";
-import {FormInput} from "./layout/form-input";
+import {RoleTab} from "./partials/role-tab";
+import {FormInput} from "./partials/form-input";
 import {Routes} from "../../routes";
-import {SSO} from "./layout/sso";
-import {FormSwitch} from "./layout/form-switch";
+import {SSO} from "./partials/sso";
+import {FormSwitch} from "./partials/form-switch";
 
 export const RegisterScreen = ({ navigation }: any) => {
   const [agreeTerms, setAgreeTerms] = useState(false);
@@ -68,7 +68,7 @@ export const RegisterScreen = ({ navigation }: any) => {
           }/>
         </View>
 
-        <TouchableOpacity className="w-full bg-purple-600 rounded-full py-4 mb-4 items-center">
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.verifyEmail)} className="w-full bg-purple-600 rounded-full py-4 mb-4 items-center">
           <Text className="text-white font-semibold">Create Account</Text>
         </TouchableOpacity>
 

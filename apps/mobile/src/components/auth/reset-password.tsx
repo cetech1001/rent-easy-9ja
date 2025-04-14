@@ -3,7 +3,7 @@ import {ScrollView, View, Text, TextInput, TouchableOpacity, Image, SafeAreaView
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
-import {FormInput} from "./layout/form-input";
+import {FormInput} from "./partials/form-input";
 import {Routes} from "../../routes";
 
 export const ResetPasswordScreen = ({ navigation }: any) => {

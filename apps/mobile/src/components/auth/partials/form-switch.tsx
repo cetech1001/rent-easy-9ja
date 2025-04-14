@@ -13,7 +13,7 @@ export const FormSwitch: FC<IProps> = (props) => {
       <Switch
         value={props.value}
         onValueChange={props.setValue}
-        trackColor={{ false: '#E5E7EB', true: '#D1D5DB' }}
+        trackColor={{ false: '#FFFFFF', true: '#FFFFFF' }}
         thumbColor={props.value ? '#7e22ce' : '#9CA3AF'}
       />
       <Text className="ml-2 text-sm text-base-600">{props.label}</Text>

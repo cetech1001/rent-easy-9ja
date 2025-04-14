@@ -3,7 +3,7 @@ import {ScrollView, View, Text, TextInput, TouchableOpacity, Image, SafeAreaView
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
-import {FormInput} from "./layout/form-input";
+import {FormInput} from "./partials/form-input";
 import {Routes} from "../../routes";
 
 export const ForgotPasswordScreen = ({ navigation }: any) => {
@@ -34,7 +34,7 @@ export const ForgotPasswordScreen = ({ navigation }: any) => {
                        type={'email-address'} size={24} height={'h-16'} value={email} setValue={setEmail}/>
           </View>
 
-          <TouchableOpacity className="w-full bg-purple-600 rounded-full py-4 items-center">
+          <TouchableOpacity onPress={() => navigation.navigate(Routes.resetPassword)} className="w-full bg-purple-600 rounded-full py-4 items-center">
             <Text className="text-white font-semibold">Reset Password</Text>
           </TouchableOpacity>
         </View>
