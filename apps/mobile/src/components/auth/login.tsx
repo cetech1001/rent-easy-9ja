@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native';
-import {Routes} from "../../routes";
+import {FLOWS, ROUTES} from "../../routes";
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
 import {FormInput} from "./partials/form-input";
@@ -8,9 +8,12 @@ import {AccessRole} from "../../helper";
 import {RoleTab} from "./partials/role-tab";
 import {FormSwitch} from "./partials/form-switch";
 import {SSO} from "./partials/sso";
+import {useNavigateTo} from "../../hooks/use-navigate";
 
 
-export const LoginScreen = ({ navigation }: any) => {
+export const LoginScreen = () => {
+  const navigateTo = useNavigateTo();
+
   const [remember, setRemember] = useState(false);
 
   const [role, setRole] = useState(AccessRole.tenant);
@@ -43,13 +46,14 @@ export const LoginScreen = ({ navigation }: any) => {
 
           <View className="flex-row items-center justify-between mt-4">
             <FormSwitch value={remember} setValue={setRemember} label={'Remember me'}/>
-            <TouchableOpacity onPress={() => navigation.navigate(Routes.forgotPassword)}>
+            <TouchableOpacity onPress={() => navigateTo(ROUTES.forgotPassword, FLOWS.authFlow)}>
               <Text className="text-sm text-purple-600 font-medium">Forgot Password?</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        <TouchableOpacity className="w-full bg-purple-600 rounded-full py-4 mb-4 items-center">
+        <TouchableOpacity onPress={() => navigateTo(ROUTES.tenantHome, FLOWS.tenantFlow)}
+                          className="w-full bg-purple-600 rounded-full py-4 mb-4 items-center">
           <Text className="text-white font-semibold">Sign In</Text>
         </TouchableOpacity>
 
@@ -59,7 +63,7 @@ export const LoginScreen = ({ navigation }: any) => {
 
         <Text className="text-center mt-8 text-base-600">
           Don't have an account?{' '}
-          <Text onPress={() => navigation.navigate(Routes.register)}
+          <Text onPress={() => navigateTo(ROUTES.register, FLOWS.authFlow)}
                 className="text-purple-600 font-medium">Sign Up</Text>
         </Text>
       </View>

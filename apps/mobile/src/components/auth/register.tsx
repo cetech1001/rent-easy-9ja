@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import {ScrollView, View, Text, TextInput, TouchableOpacity, Switch, SafeAreaView} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {ScrollView, View, Text, TouchableOpacity, SafeAreaView} from 'react-native';
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
 import {AccessRole} from "../../helper";
 import {RoleTab} from "./partials/role-tab";
 import {FormInput} from "./partials/form-input";
-import {Routes} from "../../routes";
+import {FLOWS, ROUTES} from "../../routes";
 import {SSO} from "./partials/sso";
 import {FormSwitch} from "./partials/form-switch";
+import {useNavigateTo} from "../../hooks/use-navigate";
 
-export const RegisterScreen = ({ navigation }: any) => {
+export const RegisterScreen = () => {
+  const navigateTo = useNavigateTo();
   const [agreeTerms, setAgreeTerms] = useState(false);
 
   const [role, setRole] = useState(AccessRole.tenant);
@@ -68,7 +69,8 @@ export const RegisterScreen = ({ navigation }: any) => {
           }/>
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.verifyEmail)} className="w-full bg-purple-600 rounded-full py-4 mb-4 items-center">
+        <TouchableOpacity onPress={() => navigateTo(ROUTES.verifyEmail, FLOWS.authFlow)}
+                          className="w-full bg-purple-600 rounded-full py-4 mb-4 items-center">
           <Text className="text-white font-semibold">Create Account</Text>
         </TouchableOpacity>
 
@@ -78,7 +80,7 @@ export const RegisterScreen = ({ navigation }: any) => {
 
         <Text className="text-center mt-8 text-gray-600">
           Already have an account?{' '}
-          <Text onPress={() => navigation.navigate(Routes.login)}
+          <Text onPress={() => navigateTo(ROUTES.login, FLOWS.authFlow)}
                 className="text-purple-600 font-medium">Sign In</Text>
         </Text>
       </ScrollView>

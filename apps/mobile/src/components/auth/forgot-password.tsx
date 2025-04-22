@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-import {ScrollView, View, Text, TextInput, TouchableOpacity, Image, SafeAreaView} from 'react-native';
+import {View, Text, TouchableOpacity, Image, SafeAreaView} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
 import {FormInput} from "./partials/form-input";
-import {Routes} from "../../routes";
+import {FLOWS, ROUTES} from "../../routes";
+import {useNavigateTo} from "../../hooks/use-navigate";
 
-export const ForgotPasswordScreen = ({ navigation }: any) => {
+export const ForgotPasswordScreen = () => {
+  const navigateTo = useNavigateTo();
+
   const [email, setEmail] = useState("");
 
   return (
@@ -34,15 +37,15 @@ export const ForgotPasswordScreen = ({ navigation }: any) => {
                        type={'email-address'} size={24} height={'h-16'} value={email} setValue={setEmail}/>
           </View>
 
-          <TouchableOpacity onPress={() => navigation.navigate(Routes.resetPassword)} className="w-full bg-purple-600 rounded-full py-4 items-center">
-            <Text className="text-white font-semibold">Reset Password</Text>
+          <TouchableOpacity onPress={() => navigateTo(ROUTES.resetPassword, FLOWS.authFlow)} className="w-full bg-purple-600 rounded-full py-4 items-center">
+            <Text className="text-white font-semibold">Send Reset Link</Text>
           </TouchableOpacity>
         </View>
 
         <View className="mt-8 items-center">
           <Text className="text-gray-600 flex-row items-center">
             <Text>Remembered your password?{' '}</Text>
-            <Text onPress={() => navigation.navigate(Routes.login)} className="text-purple-600 font-medium">
+            <Text onPress={() => navigateTo(ROUTES.login, FLOWS.authFlow)} className="text-purple-600 font-medium">
               Log in
             </Text>
           </Text>

@@ -4,9 +4,12 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
 import {FormInput} from "./partials/form-input";
-import {Routes} from "../../routes";
+import {FLOWS, ROUTES} from "../../routes";
+import {useNavigateTo} from "../../hooks/use-navigate";
 
-export const ResetPasswordScreen = ({ navigation }: any) => {
+export const ResetPasswordScreen = () => {
+  const navigateTo = useNavigateTo();
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -36,10 +39,12 @@ export const ResetPasswordScreen = ({ navigation }: any) => {
           </View>
           <View className={"mb-4"}>
             <FormInput label={'Confirm Password'} icon={'lock'} placeholder={'Re-type your password'}
-                       secureTextEntry={true} size={24} height={'h-16'} value={confirmPassword} setValue={setConfirmPassword}/>
+                       secureTextEntry={true} size={24} height={'h-16'} value={confirmPassword}
+                       setValue={setConfirmPassword}/>
           </View>
 
-          <TouchableOpacity className="w-full bg-purple-600 rounded-full py-4 items-center">
+          <TouchableOpacity onPress={() => navigateTo(ROUTES.login, FLOWS.authFlow)}
+                            className="w-full bg-purple-600 rounded-full py-4 items-center">
             <Text className="text-white font-semibold">Set New Password</Text>
           </TouchableOpacity>
         </View>
@@ -47,7 +52,8 @@ export const ResetPasswordScreen = ({ navigation }: any) => {
         <View className="mt-8 items-center">
           <Text className="text-gray-600 flex-row items-center">
             <Text>Remembered your password?{' '}</Text>
-            <Text onPress={() => navigation.navigate(Routes.login)} className="text-purple-600 font-medium">
+            <Text onPress={() => navigateTo(ROUTES.login, FLOWS.authFlow)}
+                  className="text-purple-600 font-medium">
               Log in
             </Text>
           </Text>

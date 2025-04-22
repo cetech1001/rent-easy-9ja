@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { Pagination, ICarouselInstance } from "react-native-reanimated-carousel";
-import {Routes} from "../routes";
+import {FLOWS, ROUTES} from "../../routes";
+import {useNavigateTo} from "../../hooks/use-navigate";
 
 const window = Dimensions.get("window");
 const slides = [
@@ -32,7 +33,7 @@ const slides = [
   }
 ];
 
-export const OnboardingScreen = ({ navigation }: any) => {
+export const OnboardingScreen = () => {
   const ref = React.useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
 
@@ -44,6 +45,7 @@ export const OnboardingScreen = ({ navigation }: any) => {
   };
 
   const colorScheme = useColorScheme();
+  const navigateTo = useNavigateTo();
 
   return (
     <SafeAreaView className={"flex-1"}>
@@ -55,7 +57,7 @@ export const OnboardingScreen = ({ navigation }: any) => {
           />
           <Text className="text-lg font-bold text-purple-600" style={{ fontSize: 18 }}>Rent Easy 9ja</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.login)}>
+        <TouchableOpacity onPress={() => navigateTo(ROUTES.login, FLOWS.authFlow)}>
           <Text className="text-gray-500 text-sm">Skip</Text>
         </TouchableOpacity>
       </View>
@@ -106,11 +108,11 @@ export const OnboardingScreen = ({ navigation }: any) => {
       </View>
 
       <View className="absolute bottom-0 left-0 right-0 px-6 py-4 shadow-lg">
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.register)}
+        <TouchableOpacity onPress={() => navigateTo(ROUTES.register, FLOWS.authFlow)}
                           className="items-center rounded-full bg-purple-600 py-4 mb-3">
           <Text className="text-white font-semibold" style={{ fontSize: 16 }}>Get Started</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.login)}
+        <TouchableOpacity onPress={() => navigateTo(ROUTES.login, FLOWS.authFlow)}
                           className="items-center rounded-full border border-purple-600 text-purple-600 py-4">
           <Text className="font-semibold text-purple-600" style={{ fontSize: 16 }}>I already have an account</Text>
         </TouchableOpacity>

@@ -1,12 +1,16 @@
-import React, {useState, useRef, useMemo, useEffect} from 'react';
-import {ScrollView, View, Text, TextInput, TouchableOpacity, Image, SafeAreaView} from 'react-native';
+import React, {useState, useRef, useEffect} from 'react';
+import {View, Text, TextInput, TouchableOpacity, Image, SafeAreaView} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Header} from "./layout/header";
 import {PageTitle} from "./layout/page-title";
+import {FLOWS, ROUTES} from "../../routes";
+import {useNavigateTo} from "../../hooks/use-navigate";
 
 let intervalID: NodeJS.Timer;
 
 export const VerifyEmailScreen = () => {
+  const navigateTo = useNavigateTo();
+
   const [otp, setOtp] = useState(['', '', '', '']);
   const inputRefs = useRef<Array<TextInput | null>>([]);
   let [timer, setTimer] = useState(60000);
@@ -51,7 +55,7 @@ export const VerifyEmailScreen = () => {
       <Header/>
 
       <View className="pt-16 px-6">
-        <PageTitle title={'Verify Your Email'} description={`We've sent a verification code to${'\n'}example@email.com`}/>
+        <PageTitle title={'Verify Your Email'} description={`We've sent a verification code to\nexample@email.com`}/>
 
         <View className="flex justify-center mb-8">
           <View className="w-48 h-48 self-center relative">
@@ -83,7 +87,8 @@ export const VerifyEmailScreen = () => {
             ))}
           </View>
 
-          <TouchableOpacity className="w-full bg-purple-600 rounded-full py-4 items-center">
+          <TouchableOpacity onPress={() => navigateTo(ROUTES.tenantHome, FLOWS.tenantFlow)}
+                            className="w-full bg-purple-600 rounded-full py-4 items-center">
             <Text className="text-white font-semibold">Verify Email</Text>
           </TouchableOpacity>
         </View>
@@ -107,7 +112,8 @@ export const VerifyEmailScreen = () => {
         <View className="mt-8 items-center">
           <TouchableOpacity className="flex-row items-center">
             <FontAwesome5 name="envelope" size={16} color="#7e22ce" style={{ marginRight: 4 }} />
-            <Text className="text-purple-600 font-medium">Change email address</Text>
+            <Text className="text-purple-600 font-medium"
+                  onPress={() => navigateTo(ROUTES.register, FLOWS.authFlow)}>Change email address</Text>
           </TouchableOpacity>
         </View>
       </View>

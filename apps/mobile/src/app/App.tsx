@@ -1,33 +1,26 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import "../../global.css"
-import {OnboardingScreen} from "../components/onboarding";
-import {LoginScreen} from "../components/auth/login";
 import {DarkTheme, DefaultTheme, NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {Routes} from "../routes";
 import {useColorScheme} from "react-native";
-import {RegisterScreen} from "../components/auth/register";
-import {VerifyEmailScreen} from "../components/auth/verify-email";
-import {ForgotPasswordScreen} from "../components/auth/forgot-password";
-import {ResetPasswordScreen} from "../components/auth/reset-password";
+import {FLOWS, ROUTES} from "../routes";
+import {OnboardingScreen} from "../components/onboarding/onboarding";
+import {AuthFlow} from "../components/auth/auth";
+import {TenantFlow} from "../components/tenant/tenant";
 
-const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator();
 
 export const App = () => {
   const colorScheme = useColorScheme();
 
   return (
     <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator initialRouteName={Routes.onboarding}
-                       screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={Routes.onboarding}
-                      component={OnboardingScreen}/>
-        <Stack.Screen name={Routes.login} component={LoginScreen}/>
-        <Stack.Screen name={Routes.register} component={RegisterScreen}/>
-        <Stack.Screen name={Routes.verifyEmail} component={VerifyEmailScreen}/>
-        <Stack.Screen name={Routes.forgotPassword} component={ForgotPasswordScreen}/>
-        <Stack.Screen name={Routes.resetPassword} component={ResetPasswordScreen}/>
-      </Stack.Navigator>
+      <RootStack.Navigator initialRouteName={ROUTES.onboarding}
+                           screenOptions={{ headerShown: false }}>
+        <RootStack.Screen name={ROUTES.onboarding} component={OnboardingScreen}/>
+        <RootStack.Screen name={FLOWS.authFlow} component={AuthFlow}/>
+        <RootStack.Screen name={FLOWS.tenantFlow} component={TenantFlow}/>
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
