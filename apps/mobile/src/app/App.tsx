@@ -15,7 +15,7 @@ export const App = () => {
 
   return (
     <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootStack.Navigator initialRouteName={ROUTES.onboarding}
+      <RootStack.Navigator initialRouteName={FLOWS.tenantFlow}
                            screenOptions={{ headerShown: false }}>
         <RootStack.Screen name={ROUTES.onboarding} component={OnboardingScreen}/>
         <RootStack.Screen name={FLOWS.authFlow} component={AuthFlow}/>
