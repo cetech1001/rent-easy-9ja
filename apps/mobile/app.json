@@ -18,7 +18,6 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "5",
       "supportsTablet": true,
       "bundleIdentifier": "com.RentEasy9ja.org",
       "infoPlist": {
