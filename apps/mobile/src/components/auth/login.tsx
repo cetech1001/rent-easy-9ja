@@ -22,7 +22,7 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <SafeAreaView className={"flex-1"}>
+    <SafeAreaView className={"flex-1 text-base-content"}>
       <Header/>
 
       <View className="pt-20 px-6">
