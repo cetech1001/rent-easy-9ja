@@ -17,7 +17,7 @@ export const App = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <RootStack.Navigator initialRouteName={FLOWS.tenantFlow}
+        <RootStack.Navigator initialRouteName={ROUTES.onboarding}
                              screenOptions={{ headerShown: false }}>
           <RootStack.Screen name={ROUTES.onboarding} component={OnboardingScreen}/>
           <RootStack.Screen name={FLOWS.authFlow} component={AuthFlow}/>
