@@ -1,14 +1,27 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {ROUTES} from "../../routes";
 import {TenantHomeScreen} from "./home";
+import {TenantExploreScreen} from "./explore";
+import {Header} from "./layout/header";
+import React from "react";
+import {SafeAreaView} from "react-native";
+import {Footer} from "./layout/footer";
+import {TenantSearchScreen} from "./search";
 
 const TenantStack = createNativeStackNavigator();
 
 export const TenantFlow = () => {
   return (
-    <TenantStack.Navigator screenOptions={{ headerShown: false }}
-                           initialRouteName={ROUTES.tenantHome}>
-      <TenantStack.Screen name={ROUTES.tenantHome} component={TenantHomeScreen}/>
-    </TenantStack.Navigator>
+    <SafeAreaView className="flex-1">
+      <Header title={'Rent Easy 9ja'}/>
+      <TenantStack.Navigator screenOptions={{ headerShown: false }}
+                             initialRouteName={ROUTES.tenantHome}>
+        <TenantStack.Screen name={ROUTES.tenantHome} component={TenantHomeScreen}/>
+        <TenantStack.Screen name={ROUTES.tenantExplore} component={TenantExploreScreen}/>
+        <TenantStack.Screen name={ROUTES.tenantSearch} component={TenantSearchScreen}/>
+      </TenantStack.Navigator>
+      <Footer/>
+    </SafeAreaView>
+
   );
 }

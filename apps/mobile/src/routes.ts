@@ -13,6 +13,8 @@ const AUTH_ROUTES = {
 
 const TENANT_ROUTES = {
   tenantHome: 'TenantHome',
+  tenantExplore: 'TenantExplore',
+  tenantSearch: 'TenantSearch'
 }
 
 export const ROUTES = {

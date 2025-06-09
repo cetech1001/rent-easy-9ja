@@ -1,16 +1,14 @@
 import React from 'react';
 import {
-  SafeAreaView,
   ScrollView,
   View,
   Text,
 } from 'react-native';
-import {Header} from "./layout/header";
 import {PropertyTile} from "./partials/property-tile";
 import {Property} from "@rent-easy-9ja/types";
 import {LocationTile} from "./partials/location-tile";
-import {Footer} from "./layout/footer";
 import {GesturePropertyTile} from "./partials/gesture-property-tile";
+import {globalStyles} from "../../styles/global";
 
 const featuredProperties: Property[] = [
   {
@@ -77,51 +75,45 @@ const trendingLocations = [
   },
 ]
 
-export const TenantHomeScreen = ({ navigation }: any) => {
+export const TenantHomeScreen = () => {
   return (
-    <SafeAreaView className="flex-1">
-      <Header/>
+    <ScrollView
+      contentContainerStyle={globalStyles.mainContainer}
+      className="px-4"
+      showsVerticalScrollIndicator={false}
+    >
+      <View className="mb-8">
+        <Text className="text-xl text-base-content font-bold mb-4">
+          Featured Properties
+        </Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingRight: 16 }}
+        >
+          {featuredProperties.map((item) => (
+            <PropertyTile property={item} key={item.id}/>
+          ))}
+        </ScrollView>
+      </View>
 
-      <ScrollView
-        contentContainerStyle={{ paddingTop: 112, paddingBottom: 80 }}
-        className="px-4"
-        showsVerticalScrollIndicator={false}
-      >
-        <View className="mb-8">
-          <Text className="text-xl text-base-content font-bold mb-4">
-            Featured Properties
-          </Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingRight: 16 }}
-          >
-            {featuredProperties.map((item) => (
-              <PropertyTile property={item} key={item.id}/>
-            ))}
-          </ScrollView>
+      <View className="mb-8">
+        <Text className="text-xl text-base-content font-bold mb-4">
+          Recommended for You
+        </Text>
+        <GesturePropertyTile properties={recommendedProperties}/>
+      </View>
+
+      <View>
+        <Text className="text-xl text-base-content font-bold mb-4">
+          Trending Neighborhoods
+        </Text>
+        <View className="flex-row flex-wrap justify-between">
+          {trendingLocations.map((tile) => (
+            <LocationTile locationTile={tile} key={tile.id}/>
+          ))}
         </View>
-
-        <View className="mb-8">
-          <Text className="text-xl text-base-content font-bold mb-4">
-            Recommended for You
-          </Text>
-          <GesturePropertyTile properties={recommendedProperties}/>
-        </View>
-
-        <View>
-          <Text className="text-xl text-base-content font-bold mb-4">
-            Trending Neighborhoods
-          </Text>
-          <View className="flex-row flex-wrap justify-between">
-            {trendingLocations.map((tile) => (
-              <LocationTile locationTile={tile} key={tile.id}/>
-            ))}
-          </View>
-        </View>
-      </ScrollView>
-
-      <Footer/>
-    </SafeAreaView>
+      </View>
+    </ScrollView>
   );
 };

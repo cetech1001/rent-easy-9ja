@@ -1,17 +1,34 @@
 import {Text, TouchableOpacity, useColorScheme, View} from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import React from "react";
+import React, {useState} from "react";
+import {useNavigateTo} from "../../../hooks/use-navigate";
+import {FLOWS, ROUTES} from "../../../routes";
 
-
-const navOptions = [
-  { icon: 'home', label: 'Home', active: true },
-  { icon: 'compass', label: 'Explore', active: false },
-  { icon: 'heart', label: 'Saved', active: false },
-  { icon: 'user', label: 'Profile', active: false },
-]
 
 export const Footer = () => {
   const colorScheme = useColorScheme();
+  const navigateTo = useNavigateTo();
+
+  const [navOptions, setNavOptions] = useState([
+    { icon: 'home', label: 'Home', route: ROUTES.tenantHome, active: true },
+    { icon: 'compass', label: 'Explore', route: ROUTES.tenantExplore, active: false },
+    { icon: 'heart', label: 'Saved', route: ROUTES.tenantExplore, active: false },
+    { icon: 'user', label: 'Profile', route: ROUTES.tenantExplore, active: false },
+  ]);
+
+  const changeRoute = (label: string) => {
+    setNavOptions(prevState => {
+      return prevState.map(option => {
+        if (label === option.label) {
+          return {
+            ...option,
+            active: true,
+          };
+        }
+        return { ...option, active: false };
+      });
+    });
+  }
 
   return (
     <View className={`absolute bottom-0 left-0 right-0 ${colorScheme === 'dark' ? 'bg-black' : 'bg-white'} border-t border-base-200 px-6 py-3`}>
@@ -19,6 +36,10 @@ export const Footer = () => {
         {navOptions.map((option, i) => (
           <TouchableOpacity
             key={i}
+            onPress={() => {
+              changeRoute(option.label);
+              navigateTo(option.route, FLOWS.tenantFlow);
+            }}
             className={`flex-1 flex-col items-center ${
               option.active ? 'text-purple-600' : 'text-gray-400'
             }`}

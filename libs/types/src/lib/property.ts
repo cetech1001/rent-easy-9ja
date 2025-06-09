@@ -6,3 +6,10 @@ export interface Property {
   price: string;
   location: string;
 }
+
+export interface Amenities {
+  furnished?: boolean;
+  ac?: boolean;
+  security?: boolean;
+  parking?: boolean;
+}
