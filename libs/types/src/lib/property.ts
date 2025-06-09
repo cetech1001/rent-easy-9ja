@@ -4,4 +4,5 @@ export interface Property {
   title: string;
   subtitle: string;
   price: string;
+  location: string;
 }

@@ -20,6 +20,7 @@ const featuredProperties: Property[] = [
     price: '₦450,000/mo',
     uri:
       'https://storage.googleapis.com/uxpilot-auth.appspot.com/32726e1724-b37f0370ed6f7ff1b2c5.png',
+    location: 'Lekki, Lagos',
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ const featuredProperties: Property[] = [
     price: '₦650,000/mo',
     uri:
       'https://storage.googleapis.com/uxpilot-auth.appspot.com/ca8187e486-5f6142e6406aaca4449a.png',
+    location: 'Gwarimpa, Abuja',
   },
 ];
 
@@ -38,6 +40,7 @@ const recommendedProperties: Property[] = [
     subtitle: '2 bed • 2 bath • Serviced',
     price: '₦350,000/mo',
     uri: 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5a4f142203-1812e482100f0dc787d4.png',
+    location: 'Victoria Island, Lagos',
   },
   {
     id: 2,
@@ -45,6 +48,7 @@ const recommendedProperties: Property[] = [
     subtitle: '3 bed • 2 bath • Serviced',
     price: '₦550,000/mo',
     uri: 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5a4f142203-1812e482100f0dc787d4.png',
+    location: 'Ikoyi, Lagos',
   },
   {
     id: 3,
@@ -52,6 +56,7 @@ const recommendedProperties: Property[] = [
     subtitle: '1 bed • 1 bath • Serviced',
     price: '₦315,000/mo',
     uri: 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5a4f142203-1812e482100f0dc787d4.png',
+    location: 'Lekki, Lagos',
   }
 ];
 
