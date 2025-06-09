@@ -7,7 +7,7 @@ import {FLOWS, ROUTES} from "../../../routes";
 
 export const Footer = () => {
   const colorScheme = useColorScheme();
-  const navigateTo = useNavigateTo();
+  const navigateTo = useNavigateTo(FLOWS.tenantFlow);
 
   const [navOptions, setNavOptions] = useState([
     { icon: 'home', label: 'Home', route: ROUTES.tenantHome, active: true },
@@ -38,7 +38,7 @@ export const Footer = () => {
             key={i}
             onPress={() => {
               changeRoute(option.label);
-              navigateTo(option.route, FLOWS.tenantFlow);
+              navigateTo(option.route);
             }}
             className={`flex-1 flex-col items-center ${
               option.active ? 'text-purple-600' : 'text-gray-400'

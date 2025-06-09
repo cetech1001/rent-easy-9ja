@@ -10,8 +10,12 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Amenities} from "@rent-easy-9ja/types";
 import {globalStyles} from "../../styles/global";
+import {useNavigateTo} from "../../hooks/use-navigate";
+import {FLOWS, ROUTES} from "../../routes";
 
 export const TenantSearchScreen = () => {
+  const navigateTo = useNavigateTo(FLOWS.tenantFlow);
+
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [amenities, setAmenities] = useState<Amenities>({
@@ -20,6 +24,8 @@ export const TenantSearchScreen = () => {
     security: false,
     parking: false,
   });
+  const [selectedLocation, setSelectedLocation] = useState<string>('');
+  const [selectedPropertyTypes, setSelectedPropertyTypes] = useState<string[]>([]);
 
   const toggleAmenity = (key: string) => {
     // @ts-expect-error idk
@@ -47,14 +53,30 @@ export const TenantSearchScreen = () => {
           <FontAwesome5 name="map-marker" size={16} color="#FFF" style={{ marginRight: 8 }} />
           <Text className="text-white">Popular Locations</Text>
         </TouchableOpacity>
-        {['Lagos', 'Abuja', 'Port Harcourt'].map((city) => (
-          <TouchableOpacity
-            key={city}
-            className="px-4 py-2 rounded-full bg-white border border-gray-200"
-          >
-            <Text className="text-gray-700">{city}</Text>
-          </TouchableOpacity>
-        ))}
+        {['Lagos', 'Abuja', 'Port Harcourt'].map((city) => {
+          const isSelected = selectedLocation === city;
+          return (
+            <TouchableOpacity
+              key={city}
+              onPress={() => setSelectedLocation(city)}
+              className={`px-4 py-2 rounded-full flex-row items-center ${
+                isSelected ? 'bg-purple-600 border-transparent' : 'bg-white border border-gray-200'
+              }`}
+            >
+              {isSelected && (
+                <TouchableOpacity onPress={() => setSelectedLocation("")}>
+                  <FontAwesome5
+                    name={'times'}
+                    size={12}
+                    color={isSelected ? '#FFF' : '#7e22ce'}
+                    style={{ marginRight: 8 }}
+                  />
+                </TouchableOpacity>
+              )}
+              <Text className={`${isSelected ? 'text-white' : 'text-gray-700'}`}>{city}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
 
       <View className="rounded-2xl p-4 mb-6">
@@ -86,20 +108,43 @@ export const TenantSearchScreen = () => {
               { icon: 'home', label: 'House' },
               { icon: 'hotel', label: 'Studio' },
               { icon: 'warehouse', label: 'Duplex' },
-            ].map((type) => (
-              <TouchableOpacity
-                key={type.label}
-                className="w-[48%] px-4 py-3 rounded-lg border border-gray-200 mb-3 flex-row items-center"
-              >
-                <FontAwesome5
-                  name={type.icon}
-                  size={16}
-                  color="#7e22ce"
-                  style={{ marginRight: 8 }}
-                />
-                <Text className={"text-base-content"}>{type.label}</Text>
-              </TouchableOpacity>
-            ))}
+            ].map((type) => {
+              const isSelected = selectedPropertyTypes.includes(type.label);
+              return (
+                <TouchableOpacity
+                  key={type.label}
+                  onPress={() => setSelectedPropertyTypes(prevState => ([
+                    ...prevState,
+                    type.label
+                  ]))}
+                  className={`w-[48%] px-4 py-3 rounded-lg mb-3 flex-row items-center justify-between ${
+                    isSelected ? 'bg-purple-600 border-transparent' : 'border border-gray-200'
+                  }`}
+                >
+                  <View className={"flex-row items-center"}>
+                    <FontAwesome5
+                      name={type.icon}
+                      size={16}
+                      color={isSelected ? '#FFF' : '#7e22ce'}
+                      style={{ marginRight: 8 }}
+                    />
+                    <Text className={isSelected ? 'text-white' : 'text-base-content'}>{type.label}</Text>
+                  </View>
+                  {isSelected && (
+                    <TouchableOpacity onPress={() => setSelectedPropertyTypes(prevState => ([
+                      ...prevState.filter(v => v !== type.label)
+                    ]))}>
+                      <FontAwesome5
+                        name={'times'}
+                        size={12}
+                        color={isSelected ? '#FFF' : '#7e22ce'}
+                        style={{ marginRight: 8 }}
+                      />
+                    </TouchableOpacity>
+                  )}
+                </TouchableOpacity>
+              );
+            })}
           </View>
         </View>
 
@@ -132,7 +177,9 @@ export const TenantSearchScreen = () => {
       </View>
 
       <View className="absolute bottom-0 left-0 right-0 border-t px-6 py-4">
-        <TouchableOpacity className="w-full bg-purple-600 rounded-full py-4 items-center">
+        <TouchableOpacity
+          onPress={() => navigateTo(ROUTES.tenantExplore)}
+          className="w-full bg-purple-600 rounded-full py-4 items-center">
           <Text className="text-white font-semibold">Show Results</Text>
         </TouchableOpacity>
       </View>
