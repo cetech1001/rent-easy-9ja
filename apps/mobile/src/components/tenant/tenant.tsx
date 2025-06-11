@@ -7,6 +7,7 @@ import React from "react";
 import {SafeAreaView} from "react-native";
 import {Footer} from "./layout/footer";
 import {TenantSearchScreen} from "./search";
+import {TenantPropertyDetailScreen} from "./property-detail";
 
 const TenantStack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export const TenantFlow = () => {
         <TenantStack.Screen name={ROUTES.tenantHome} component={TenantHomeScreen}/>
         <TenantStack.Screen name={ROUTES.tenantExplore} component={TenantExploreScreen}/>
         <TenantStack.Screen name={ROUTES.tenantSearch} component={TenantSearchScreen}/>
+        <TenantStack.Screen name={ROUTES.tenantPropertyDetail} component={TenantPropertyDetailScreen}/>
       </TenantStack.Navigator>
       <Footer/>
     </SafeAreaView>

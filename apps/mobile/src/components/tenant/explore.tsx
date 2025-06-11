@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {globalStyles} from "../../styles/global";
+import {useNavigateTo} from "../../hooks/use-navigate";
+import {FLOWS, ROUTES} from "../../routes";
 
 const { width } = Dimensions.get('window');
 
@@ -70,6 +72,8 @@ const CATEGORIES: Category[] = [
 ];
 
 export const TenantExploreScreen = () => {
+  const navigateTo = useNavigateTo(FLOWS.tenantFlow);
+
   const [properties, setProperties] = useState(SAMPLE_PROPERTIES);
   const [categories, setCategories] = useState(CATEGORIES);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -187,7 +191,7 @@ export const TenantExploreScreen = () => {
         style={[styles.propertyCard, cardStyle]}
         {...(isTop ? panResponder.panHandlers : {})}
       >
-        <View style={styles.imageContainer}>
+        <TouchableOpacity onPress={() => navigateTo(ROUTES.tenantPropertyDetail)} style={styles.imageContainer}>
           <Image source={{ uri: property.image }} style={styles.propertyImage} />
           <TouchableOpacity style={styles.favoriteButton}>
             <FontAwesome5
@@ -197,7 +201,7 @@ export const TenantExploreScreen = () => {
               solid={property.isFavorite}
             />
           </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
         <View style={styles.cardContent}>
           <View style={styles.cardHeader}>
             <Text style={styles.price}>{property.price}</Text>

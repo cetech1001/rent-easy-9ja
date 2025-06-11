@@ -176,7 +176,7 @@ export const TenantSearchScreen = () => {
         </View>
       </View>
 
-      <View className="absolute bottom-0 left-0 right-0 border-t px-6 py-4">
+      <View className="absolute bottom-0 left-0 right-0 px-6 py-4">
         <TouchableOpacity
           onPress={() => navigateTo(ROUTES.tenantExplore)}
           className="w-full bg-purple-600 rounded-full py-4 items-center">
