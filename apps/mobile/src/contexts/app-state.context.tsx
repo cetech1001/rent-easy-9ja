@@ -4,6 +4,8 @@ interface AppState {
   previousPage: string | null;
   isFilterPageOpen: boolean;
   currentTab: string;
+  displayBackButtonOnHeader: boolean;
+  pageTitle: string;
 }
 
 type AppAction =
@@ -11,12 +13,15 @@ type AppAction =
   | { type: 'TOGGLE_FILTER_PAGE' }
   | { type: 'SET_FILTER_PAGE'; payload: boolean }
   | { type: 'SET_CURRENT_TAB'; payload: string }
+  | { type: 'SET_PAGE_TITLE'; payload: string }
   | { type: 'RESET_STATE' };
 
 const initialState: AppState = {
   previousPage: null,
   isFilterPageOpen: false,
   currentTab: 'home',
+  displayBackButtonOnHeader: false,
+  pageTitle: 'Rent Easy 9ja'
 };
 
 const appStateReducer = (state: AppState, action: AppAction): AppState => {
@@ -29,6 +34,8 @@ const appStateReducer = (state: AppState, action: AppAction): AppState => {
       return { ...state, isFilterPageOpen: action.payload };
     case 'SET_CURRENT_TAB':
       return { ...state, currentTab: action.payload };
+    case 'SET_PAGE_TITLE':
+      return { ...state, pageTitle: action.payload };
     case 'RESET_STATE':
       return initialState;
     default:
@@ -60,6 +67,20 @@ export const useAppState = () => {
   }
   return context;
 };
+
+export const useHeaderState = () => {
+  const { state, dispatch } = useAppState();
+
+  const setPageTitle = (title: string) => {
+    dispatch({ type: 'SET_PAGE_TITLE', payload: title });
+  }
+
+  return {
+    title: state.pageTitle,
+    displayBackButtonOnHeader: state.displayBackButtonOnHeader,
+    setPageTitle,
+  }
+}
 
 export const useCustomNavigation = () => {
   const { state, dispatch } = useAppState();

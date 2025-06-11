@@ -14,7 +14,7 @@ const TenantStack = createNativeStackNavigator();
 export const TenantFlow = () => {
   return (
     <SafeAreaView className="flex-1">
-      <Header title={'Rent Easy 9ja'}/>
+      <Header/>
       <TenantStack.Navigator screenOptions={{ headerShown: false }}
                              initialRouteName={ROUTES.tenantHome}>
         <TenantStack.Screen name={ROUTES.tenantHome} component={TenantHomeScreen}/>

@@ -2,23 +2,22 @@ import {StyleSheet, Text, TextInput, TouchableOpacity, useColorScheme, View} fro
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import {useNavigateTo} from "../../../hooks/use-navigate";
 import {FLOWS, ROUTES} from "../../../routes";
-import {useCustomNavigation, useFilterState} from "../../../contexts/app-state.context";
+import {useCustomNavigation, useFilterState, useHeaderState} from "../../../contexts/app-state.context";
 
-interface IProps {
-  title: string;
-}
-
-export const Header = (props: IProps) => {
+export const Header = () => {
   const colorScheme = useColorScheme();
   const navigateTo = useNavigateTo(FLOWS.tenantFlow);
   const { previousPage } = useCustomNavigation();
   const { toggleFilterPage, isFilterPageOpen } = useFilterState();
+  const { title } = useHeaderState();
 
   return (
-    <View className={`absolute left-0 right-0 ${colorScheme === 'dark' ? 'bg-black' : 'bg-white'} z-50 shadow-sm`} style={{ top: 50 }}>
+    <View
+      className={`absolute left-0 right-0 ${colorScheme === 'dark' ? 'bg-black' : 'bg-white'} z-50 shadow-sm`}
+      style={{ top: 50 }}>
       <View className="flex-row justify-between items-center px-4 py-3">
         <View className="flex-row items-center gap-2">
-          <Text className="text-lg font-bold text-purple-600">{props.title}</Text>
+          <Text className="text-lg font-bold text-purple-600">{title}</Text>
         </View>
 
         <View className="flex-row items-center gap-4">
@@ -61,7 +60,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 20,
-    // backgroundColor: '#f3f4f6',
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',

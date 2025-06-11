@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ScrollView,
   View,
@@ -12,9 +12,11 @@ import {Amenities} from "@rent-easy-9ja/types";
 import {globalStyles} from "../../styles/global";
 import {useNavigateTo} from "../../hooks/use-navigate";
 import {FLOWS, ROUTES} from "../../routes";
+import {useHeaderState} from "../../contexts/app-state.context";
 
 export const TenantSearchScreen = () => {
   const navigateTo = useNavigateTo(FLOWS.tenantFlow);
+  const { setPageTitle } = useHeaderState();
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
@@ -26,6 +28,10 @@ export const TenantSearchScreen = () => {
   });
   const [selectedLocation, setSelectedLocation] = useState<string>('');
   const [selectedPropertyTypes, setSelectedPropertyTypes] = useState<string[]>([]);
+
+  useEffect(() => {
+    setPageTitle('Filter');
+  }, []);
 
   const toggleAmenity = (key: string) => {
     // @ts-expect-error idk

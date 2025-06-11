@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   ScrollView,
   View,
@@ -8,9 +8,15 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {globalStyles} from "../../styles/global";
+import {useHeaderState} from "../../contexts/app-state.context";
 
 export const TenantPropertyDetailScreen = () => {
   const colorScheme = useColorScheme();
+  const { setPageTitle } = useHeaderState();
+
+  useEffect(() => {
+    setPageTitle('Filter');
+  }, []);
 
   return (
     <ScrollView

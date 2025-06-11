@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   ScrollView,
   View,
@@ -9,6 +9,7 @@ import {Property} from "@rent-easy-9ja/types";
 import {LocationTile} from "./partials/location-tile";
 import {GesturePropertyTile} from "./partials/gesture-property-tile";
 import {globalStyles} from "../../styles/global";
+import {useHeaderState} from "../../contexts/app-state.context";
 
 const featuredProperties: Property[] = [
   {
@@ -76,6 +77,12 @@ const trendingLocations = [
 ]
 
 export const TenantHomeScreen = () => {
+  const { setPageTitle } = useHeaderState();
+
+  useEffect(() => {
+    setPageTitle('Rent Easy 9ja');
+  }, []);
+
   return (
     <ScrollView
       contentContainerStyle={globalStyles.mainContainer}

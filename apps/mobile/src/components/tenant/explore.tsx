@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {globalStyles} from "../../styles/global";
 import {useNavigateTo} from "../../hooks/use-navigate";
 import {FLOWS, ROUTES} from "../../routes";
+import {useHeaderState} from "../../contexts/app-state.context";
 
 const { width } = Dimensions.get('window');
 
@@ -73,10 +74,14 @@ const CATEGORIES: Category[] = [
 
 export const TenantExploreScreen = () => {
   const navigateTo = useNavigateTo(FLOWS.tenantFlow);
-
+  const { setPageTitle } = useHeaderState();
   const [properties, setProperties] = useState(SAMPLE_PROPERTIES);
   const [categories, setCategories] = useState(CATEGORIES);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    setPageTitle('Explore');
+  }, []);
 
   const pan = useRef(new Animated.ValueXY()).current;
 
