@@ -16,7 +16,8 @@ const TENANT_ROUTES = {
   tenantExplore: 'TenantExplore',
   tenantSearch: 'TenantSearch',
   tenantPropertyDetail: 'TenantPropertyDetail',
-  tenantSavedAndRecent: 'TenantSavedAndRecent'
+  tenantSavedAndRecent: 'TenantSavedAndRecent',
+  tenantProfile: 'TenantProfile'
 }
 
 export const ROUTES = {

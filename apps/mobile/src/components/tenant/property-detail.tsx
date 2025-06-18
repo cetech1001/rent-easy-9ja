@@ -21,7 +21,9 @@ export const TenantPropertyDetailScreen = () => {
   return (
     <ScrollView
       contentContainerStyle={globalStyles.mainContainer}
-      showsVerticalScrollIndicator={false}>
+      showsVerticalScrollIndicator={false}
+      className={"px-4"}
+    >
       <View className="relative w-full h-72">
         <Image
           source={{

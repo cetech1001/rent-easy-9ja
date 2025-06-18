@@ -13,7 +13,7 @@ export const Footer = () => {
     { icon: 'home', label: 'Home', route: ROUTES.tenantHome, active: true },
     { icon: 'compass', label: 'Explore', route: ROUTES.tenantExplore, active: false },
     { icon: 'heart', label: 'Saved', route: ROUTES.tenantSavedAndRecent, active: false },
-    { icon: 'user', label: 'Profile', route: ROUTES.tenantExplore, active: false },
+    { icon: 'user', label: 'Profile', route: ROUTES.tenantProfile, active: false },
   ]);
 
   const changeRoute = (label: string) => {

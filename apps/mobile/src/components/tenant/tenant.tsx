@@ -9,6 +9,7 @@ import {Footer} from "./layout/footer";
 import {TenantSearchScreen} from "./search";
 import {TenantPropertyDetailScreen} from "./property-detail";
 import {TenantSavedAndRecentScreen} from "./saved-and-recent";
+import {TenantProfileScreen} from "./profile";
 
 const TenantStack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export const TenantFlow = () => {
         <TenantStack.Screen name={ROUTES.tenantSearch} component={TenantSearchScreen}/>
         <TenantStack.Screen name={ROUTES.tenantPropertyDetail} component={TenantPropertyDetailScreen}/>
         <TenantStack.Screen name={ROUTES.tenantSavedAndRecent} component={TenantSavedAndRecentScreen}/>
+        <TenantStack.Screen name={ROUTES.tenantProfile} component={TenantProfileScreen}/>
       </TenantStack.Navigator>
       <Footer/>
     </SafeAreaView>
