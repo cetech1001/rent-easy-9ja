@@ -77,10 +77,10 @@ const trendingLocations = [
 ]
 
 export const TenantHomeScreen = () => {
-  const { setPageTitle } = useHeaderState();
+  const { setHeader } = useHeaderState();
 
   useEffect(() => {
-    setPageTitle('Rent Easy 9ja');
+    setHeader('Rent Easy 9ja');
   }, []);
 
   return (

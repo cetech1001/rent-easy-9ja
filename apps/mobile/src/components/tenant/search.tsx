@@ -16,7 +16,7 @@ import {useHeaderState} from "../../contexts/app-state.context";
 
 export const TenantSearchScreen = () => {
   const navigateTo = useNavigateTo(FLOWS.tenantFlow);
-  const { setPageTitle } = useHeaderState();
+  const { setHeader } = useHeaderState();
 
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
@@ -30,7 +30,7 @@ export const TenantSearchScreen = () => {
   const [selectedPropertyTypes, setSelectedPropertyTypes] = useState<string[]>([]);
 
   useEffect(() => {
-    setPageTitle('Filter');
+    setHeader('Filter Properties');
   }, []);
 
   const toggleAmenity = (key: string) => {

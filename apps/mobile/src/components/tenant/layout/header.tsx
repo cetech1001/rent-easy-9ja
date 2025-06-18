@@ -9,15 +9,22 @@ export const Header = () => {
   const navigateTo = useNavigateTo(FLOWS.tenantFlow);
   const { previousPage } = useCustomNavigation();
   const { toggleFilterPage, isFilterPageOpen } = useFilterState();
-  const { title } = useHeaderState();
+  const { title, displayBackButtonOnHeader } = useHeaderState();
 
   return (
     <View
       className={`absolute left-0 right-0 ${colorScheme === 'dark' ? 'bg-black' : 'bg-white'} z-50 shadow-sm`}
       style={{ top: 50 }}>
       <View className="flex-row justify-between items-center px-4 py-3">
-        <View className="flex-row items-center gap-2">
-          <Text className="text-lg font-bold text-purple-600">{title}</Text>
+        <View className={"flex-row items-center gap-4"}>
+          {displayBackButtonOnHeader && (
+            <TouchableOpacity>
+              <FontAwesome5 name="arrow-left" size={16} color="#6b7280" />
+            </TouchableOpacity>
+          )}
+          <View className="flex-row items-center gap-2">
+            <Text className="text-lg font-bold text-purple-600">{title}</Text>
+          </View>
         </View>
 
         <View className="flex-row items-center gap-4">

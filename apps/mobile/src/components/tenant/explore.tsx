@@ -74,13 +74,13 @@ const CATEGORIES: Category[] = [
 
 export const TenantExploreScreen = () => {
   const navigateTo = useNavigateTo(FLOWS.tenantFlow);
-  const { setPageTitle } = useHeaderState();
+  const { setHeader } = useHeaderState();
   const [properties, setProperties] = useState(SAMPLE_PROPERTIES);
   const [categories, setCategories] = useState(CATEGORIES);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    setPageTitle('Explore');
+    setHeader('Explore');
   }, []);
 
   const pan = useRef(new Animated.ValueXY()).current;

@@ -12,10 +12,10 @@ import {useHeaderState} from "../../contexts/app-state.context";
 
 export const TenantPropertyDetailScreen = () => {
   const colorScheme = useColorScheme();
-  const { setPageTitle } = useHeaderState();
+  const { setHeader } = useHeaderState();
 
   useEffect(() => {
-    setPageTitle('Filter');
+    setHeader('Property Detail', true);
   }, []);
 
   return (

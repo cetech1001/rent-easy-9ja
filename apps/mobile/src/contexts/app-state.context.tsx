@@ -14,6 +14,7 @@ type AppAction =
   | { type: 'SET_FILTER_PAGE'; payload: boolean }
   | { type: 'SET_CURRENT_TAB'; payload: string }
   | { type: 'SET_PAGE_TITLE'; payload: string }
+  | { type: 'SET_DISPLAY_BACK_BUTTON_ON_HEADER'; payload: boolean }
   | { type: 'RESET_STATE' };
 
 const initialState: AppState = {
@@ -36,6 +37,8 @@ const appStateReducer = (state: AppState, action: AppAction): AppState => {
       return { ...state, currentTab: action.payload };
     case 'SET_PAGE_TITLE':
       return { ...state, pageTitle: action.payload };
+    case 'SET_DISPLAY_BACK_BUTTON_ON_HEADER':
+      return { ...state, displayBackButtonOnHeader: action.payload };
     case 'RESET_STATE':
       return initialState;
     default:
@@ -71,14 +74,15 @@ export const useAppState = () => {
 export const useHeaderState = () => {
   const { state, dispatch } = useAppState();
 
-  const setPageTitle = (title: string) => {
+  const setHeader = (title: string, displayBackButtonOnHeader = false) => {
     dispatch({ type: 'SET_PAGE_TITLE', payload: title });
+    dispatch({ type: 'SET_DISPLAY_BACK_BUTTON_ON_HEADER', payload: displayBackButtonOnHeader });
   }
 
   return {
     title: state.pageTitle,
     displayBackButtonOnHeader: state.displayBackButtonOnHeader,
-    setPageTitle,
+    setHeader,
   }
 }
 

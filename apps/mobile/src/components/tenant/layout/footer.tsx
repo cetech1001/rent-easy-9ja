@@ -12,7 +12,7 @@ export const Footer = () => {
   const [navOptions, setNavOptions] = useState([
     { icon: 'home', label: 'Home', route: ROUTES.tenantHome, active: true },
     { icon: 'compass', label: 'Explore', route: ROUTES.tenantExplore, active: false },
-    { icon: 'heart', label: 'Saved', route: ROUTES.tenantExplore, active: false },
+    { icon: 'heart', label: 'Saved', route: ROUTES.tenantSavedAndRecent, active: false },
     { icon: 'user', label: 'Profile', route: ROUTES.tenantExplore, active: false },
   ]);
 
