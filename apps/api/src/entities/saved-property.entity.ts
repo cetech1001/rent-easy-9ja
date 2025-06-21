@@ -8,12 +8,13 @@ import {
   Unique,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from './user.entity';
-import { Property } from './property.entity';
+import { UserEntity } from './user.entity';
+import { PropertyEntity } from './property.entity';
+import {SavedProperty} from "@rent-easy-9ja/types";
 
 @Entity('saved_properties')
 @Unique(['userId', 'propertyId'])
-export class SavedProperty {
+export class SavedPropertyEntity implements SavedProperty{
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -22,19 +23,18 @@ export class SavedProperty {
   @CreateDateColumn()
   createdAt: Date;
 
-  // Relations
-  @ApiProperty({ type: () => User })
-  @ManyToOne(() => User, (user) => user.savedProperties)
+  @ApiProperty({ type: () => UserEntity })
+  @ManyToOne(() => UserEntity, (user) => user.savedProperties)
   @JoinColumn({ name: 'userId' })
-  user: User;
+  user: UserEntity;
 
   @Column()
   userId: string;
 
-  @ApiProperty({ type: () => Property })
-  @ManyToOne(() => Property, (property) => property.savedByUsers, { eager: true })
+  @ApiProperty({ type: () => PropertyEntity })
+  @ManyToOne(() => PropertyEntity, (property) => property.savedByUsers, { eager: true })
   @JoinColumn({ name: 'propertyId' })
-  property: Property;
+  property: PropertyEntity;
 
   @Column()
   propertyId: string;

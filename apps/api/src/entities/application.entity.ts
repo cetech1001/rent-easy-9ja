@@ -8,18 +8,12 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from './user.entity';
-import { Property } from './property.entity';
-
-export enum ApplicationStatus {
-  PENDING = 'pending',
-  APPROVED = 'approved',
-  REJECTED = 'rejected',
-  WITHDRAWN = 'withdrawn',
-}
+import { UserEntity } from './user.entity';
+import { PropertyEntity } from './property.entity';
+import {Application, ApplicationStatus} from "@rent-easy-9ja/types";
 
 @Entity('applications')
-export class Application {
+export class ApplicationEntity implements Application{
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -56,19 +50,18 @@ export class Application {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // Relations
-  @ApiProperty({ type: () => User })
-  @ManyToOne(() => User, (user) => user.applications, { eager: true })
+  @ApiProperty({ type: () => UserEntity })
+  @ManyToOne(() => UserEntity, (user) => user.applications, { eager: true })
   @JoinColumn({ name: 'tenantId' })
-  tenant: User;
+  tenant: UserEntity;
 
   @Column()
   tenantId: string;
 
-  @ApiProperty({ type: () => Property })
-  @ManyToOne(() => Property, (property) => property.applications, { eager: true })
+  @ApiProperty({ type: () => PropertyEntity })
+  @ManyToOne(() => PropertyEntity, (property) => property.applications, { eager: true })
   @JoinColumn({ name: 'propertyId' })
-  property: Property;
+  property: PropertyEntity;
 
   @Column()
   propertyId: string;

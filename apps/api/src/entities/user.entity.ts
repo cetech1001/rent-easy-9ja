@@ -1,4 +1,3 @@
-// apps/api/src/entities/user.entity.ts
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -12,24 +11,13 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
-import { Property } from './property.entity';
-import { Application } from './application.entity';
-import { SavedProperty } from './saved-property.entity';
-
-export enum UserRole {
-  TENANT = 'tenant',
-  LANDLORD = 'landlord',
-  ADMIN = 'admin',
-}
-
-export enum UserStatus {
-  PENDING = 'pending',
-  VERIFIED = 'verified',
-  SUSPENDED = 'suspended',
-}
+import { PropertyEntity } from './property.entity';
+import { ApplicationEntity } from './application.entity';
+import { SavedPropertyEntity } from './saved-property.entity';
+import {User, UserRole, UserStatus} from "@rent-easy-9ja/types";
 
 @Entity('users')
-export class User {
+export class UserEntity implements User{
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -76,15 +64,15 @@ export class User {
 
   @ApiProperty()
   @Column({ nullable: true })
-  emailVerificationToken: string;
+  emailVerificationToken: string | null;
 
   @ApiProperty()
   @Column({ nullable: true })
-  passwordResetToken: string;
+  passwordResetToken: string | null;
 
   @ApiProperty()
   @Column({ nullable: true })
-  passwordResetExpires: Date;
+  passwordResetExpires: Date | null;
 
   @ApiProperty()
   @CreateDateColumn()
@@ -94,15 +82,14 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // Relations
-  @OneToMany(() => Property, (property) => property.landlord)
-  properties: Property[];
+  @OneToMany(() => PropertyEntity, (property) => property.landlord)
+  properties: PropertyEntity[];
 
-  @OneToMany(() => Application, (application) => application.tenant)
-  applications: Application[];
+  @OneToMany(() => ApplicationEntity, (application) => application.tenant)
+  applications: ApplicationEntity[];
 
-  @OneToMany(() => SavedProperty, (savedProperty) => savedProperty.user)
-  savedProperties: SavedProperty[];
+  @OneToMany(() => SavedPropertyEntity, (savedProperty) => savedProperty.user)
+  savedProperties: SavedPropertyEntity[];
 
   @BeforeInsert()
   @BeforeUpdate()

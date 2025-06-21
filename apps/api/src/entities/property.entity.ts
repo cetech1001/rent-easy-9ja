@@ -9,28 +9,13 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from './user.entity';
-import { Application } from './application.entity';
-import { SavedProperty } from './saved-property.entity';
-
-export enum PropertyType {
-  APARTMENT = 'apartment',
-  HOUSE = 'house',
-  STUDIO = 'studio',
-  DUPLEX = 'duplex',
-  COMMERCIAL = 'commercial',
-  LAND = 'land',
-}
-
-export enum PropertyStatus {
-  AVAILABLE = 'available',
-  RENTED = 'rented',
-  MAINTENANCE = 'maintenance',
-  DRAFT = 'draft',
-}
+import { UserEntity } from './user.entity';
+import { ApplicationEntity } from './application.entity';
+import { SavedPropertyEntity } from './saved-property.entity';
+import {Property, PropertyStatus, PropertyType} from "@rent-easy-9ja/types";
 
 @Entity('properties')
-export class Property {
+export class PropertyEntity implements Property{
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -135,18 +120,17 @@ export class Property {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // Relations
-  @ApiProperty({ type: () => User })
-  @ManyToOne(() => User, (user) => user.properties, { eager: true })
+  @ApiProperty({ type: () => UserEntity })
+  @ManyToOne(() => UserEntity, (user) => user.properties, { eager: true })
   @JoinColumn({ name: 'landlordId' })
-  landlord: User;
+  landlord: UserEntity;
 
   @Column()
   landlordId: string;
 
-  @OneToMany(() => Application, (application) => application.property)
-  applications: Application[];
+  @OneToMany(() => ApplicationEntity, (application) => application.property)
+  applications: ApplicationEntity[];
 
-  @OneToMany(() => SavedProperty, (savedProperty) => savedProperty.property)
-  savedByUsers: SavedProperty[];
+  @OneToMany(() => SavedPropertyEntity, (savedProperty) => savedProperty.property)
+  savedByUsers: SavedPropertyEntity[];
 }
