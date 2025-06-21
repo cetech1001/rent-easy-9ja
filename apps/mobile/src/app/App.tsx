@@ -7,6 +7,8 @@ import {FLOWS, ROUTES} from "../routes";
 import {OnboardingScreen} from "../components/onboarding/onboarding";
 import {AuthFlow} from "../components/auth/auth";
 import {TenantFlow} from "../components/tenant/tenant";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {AppStateProvider} from "../contexts/app-state.context";
 
 const RootStack = createNativeStackNavigator();
 
@@ -14,13 +16,17 @@ export const App = () => {
   const colorScheme = useColorScheme();
 
   return (
-    <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootStack.Navigator initialRouteName={FLOWS.tenantFlow}
-                           screenOptions={{ headerShown: false }}>
-        <RootStack.Screen name={ROUTES.onboarding} component={OnboardingScreen}/>
-        <RootStack.Screen name={FLOWS.authFlow} component={AuthFlow}/>
-        <RootStack.Screen name={FLOWS.tenantFlow} component={TenantFlow}/>
-      </RootStack.Navigator>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AppStateProvider>
+        <NavigationContainer theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <RootStack.Navigator initialRouteName={ROUTES.onboarding}
+                               screenOptions={{ headerShown: false }}>
+            <RootStack.Screen name={ROUTES.onboarding} component={OnboardingScreen}/>
+            <RootStack.Screen name={FLOWS.authFlow} component={AuthFlow}/>
+            <RootStack.Screen name={FLOWS.tenantFlow} component={TenantFlow}/>
+          </RootStack.Navigator>
+        </NavigationContainer>
+      </AppStateProvider>
+    </GestureHandlerRootView>
   );
 };
