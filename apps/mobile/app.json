@@ -4,15 +4,15 @@
     "slug": "RentEasy9ja",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#FFFFFF",
       "dark": {
-        "image": "./assets/images/splash-icon-dark.png",
+        "image": "./assets/splash-dark.png",
         "backgroundColor": "#000000"
       },
       "imageWidth": 200
@@ -33,13 +33,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.RentEasy9ja.org"
     },
     "web": {
-      "favicon": "./assets/images/favicon.png",
+      "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
     "plugins": [],

@@ -9,34 +9,49 @@
   "dependencies": {
     "@expo/metro-config": "~0.19.4",
     "@expo/metro-runtime": "~4.0.0",
+    "@nestjs/common": "^11.0.1",
+    "@nestjs/core": "^11.0.1",
+    "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/swagger": "^11.2.0",
     "@react-navigation/native": "^7.1.6",
     "@react-navigation/native-stack": "^7.3.10",
+    "axios": "^1.6.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
     "expo": "~52.0.11",
-    "expo-splash-screen": "~0.29.13",
+    "expo-splash-screen": "~0.29.24",
     "expo-status-bar": "~2.0.0",
     "nativewind": "^4.1.23",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
-    "react-native": "0.76.3",
+    "react-native": "0.76.9",
     "react-native-gesture-handler": "^2.25.0",
     "react-native-reanimated": "~3.16.1",
     "react-native-reanimated-carousel": "^4.0.2",
     "react-native-safe-area-context": "4.12.0",
+    "react-native-screens": "~4.4.0",
     "react-native-svg": "~15.8.0",
     "react-native-svg-transformer": "~1.5.0",
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "~0.19.13",
-    "tailwindcss": "^3.4.17",
-    "react-native-screens": "~4.4.0"
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.0",
+    "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
     "@expo/cli": "~0.21.8",
+    "@nestjs/schematics": "^11.0.1",
+    "@nestjs/testing": "^11.0.1",
     "@nx/cypress": "20.7.2",
     "@nx/devkit": "20.7.2",
     "@nx/expo": "20.7.2",
     "@nx/jest": "20.7.2",
     "@nx/js": "20.7.2",
+    "@nx/nest": "^20.7.2",
+    "@nx/node": "20.7.2",
     "@nx/playwright": "^20.7.2",
+    "@nx/web": "20.7.2",
+    "@nx/webpack": "20.7.2",
     "@nx/workspace": "20.7.2",
     "@playwright/test": "^1.36.0",
     "@swc-node/register": "~1.9.1",
@@ -59,9 +74,11 @@
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.2",
+    "webpack-cli": "^5.1.4"
   },
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "libs/*"
   ]
 }

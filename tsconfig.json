@@ -5,6 +5,15 @@
   "references": [
     {
       "path": "./apps/mobile"
+    },
+    {
+      "path": "./libs/types"
+    },
+    {
+      "path": "./apps/api-e2e"
+    },
+    {
+      "path": "./apps/api"
     }
   ]
 }
