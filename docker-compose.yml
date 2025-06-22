@@ -1,94 +1,20 @@
 name: "rent-easy-9ja"
 services:
-  postgres:
-    image: postgres:15-alpine
-    container_name: rent-easy-postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      PGDATA: /var/lib/postgresql/data/pgdata
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "5432:5432"
-    networks:
-      - rent-easy-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: rent-easy-pgadmin
+    container_name: rent-easy-9ja-pgadmin
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
     volumes:
       - pgadmin_data:/var/lib/pgadmin
-      - ./servers.json:/pgadmin4/servers.json
+      - ./servers.json:/pgadmin4/servers.json:ro
     ports:
       - "5050:80"
-    networks:
-      - rent-easy-network
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  redis:
-    image: redis:7-alpine
-    container_name: rent-easy-redis
-    restart: unless-stopped
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - rent-easy-network
-    command: redis-server --appendonly yes
-
-#  api:
-#    build:
-#      context: .
-#      dockerfile: apps/api/Dockerfile
-#    container_name: rent-easy-api
-#    restart: unless-stopped
-#    environment:
-#      NODE_ENV: production
-#      PORT: 3000
-#      DATABASE_URL: ${DATABASE_URL}
-#      REDIS_URL: ${REDIS_URL}
-#      JWT_SECRET: ${JWT_SECRET}
-#      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
-#      BCRYPT_ROUNDS: ${BCRYPT_ROUNDS}
-#      API_URL: ${API_URL}
-#      FRONTEND_URL: ${FRONTEND_URL}
-#    ports:
-#      - "3000:3000"
-#    networks:
-#      - rent-easy-network
-#    depends_on:
-#      postgres:
-#        condition: service_healthy
-#      redis:
-#        condition: service_started
-#    volumes:
-#      - ./uploads:/app/uploads
 
 volumes:
-  postgres_data:
-    driver: local
   pgadmin_data:
     driver: local
-  redis_data:
-    driver: local
-
-networks:
-  rent-easy-network:
-    driver: bridge

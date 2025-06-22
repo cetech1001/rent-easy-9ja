@@ -9,16 +9,13 @@ import { EmailService } from './email/email.service';
 import { PropertiesModule } from './properties/properties.module';
 import { ApplicationsModule } from './applications/applications.module';
 
-import { UserEntity } from '../entities/user.entity';
-import { PropertyEntity } from '../entities/property.entity';
-import { ApplicationEntity } from '../entities/application.entity';
-import { SavedPropertyEntity } from '../entities/saved-property.entity';
+import {ApplicationEntity, PropertyEntity, SavedPropertyEntity, UserEntity} from '../entities';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env.local', '.env'],
+      envFilePath: ['.env'],
     }),
 
     ThrottlerModule.forRoot([
@@ -39,12 +36,12 @@ import { SavedPropertyEntity } from '../entities/saved-property.entity';
           ApplicationEntity,
           SavedPropertyEntity,
         ],
-        synchronize: /*configService.get('NODE_ENV') !== 'production'*/ true,
-        logging: /*configService.get('NODE_ENV') === 'development'*/ false,
+        synchronize: /*configService.get('NODE_ENV') !== 'production'*/true,
+        logging: configService.get('NODE_ENV') === 'development',
         ssl:
-          /*configService.get('NODE_ENV') === 'production'
+          configService.get('NODE_ENV') === 'production'
             ? { rejectUnauthorized: false }
-            :*/ false,
+            : false,
       }),
       inject: [ConfigService],
     }),
