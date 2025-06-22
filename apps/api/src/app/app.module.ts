@@ -39,7 +39,7 @@ import { SavedPropertyEntity } from '../entities/saved-property.entity';
           ApplicationEntity,
           SavedPropertyEntity,
         ],
-        synchronize: configService.get('NODE_ENV') !== 'production',
+        synchronize: /*configService.get('NODE_ENV') !== 'production'*/ true,
         logging: /*configService.get('NODE_ENV') === 'development'*/ false,
         ssl:
           /*configService.get('NODE_ENV') === 'production'
