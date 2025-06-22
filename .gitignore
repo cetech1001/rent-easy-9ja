@@ -61,3 +61,9 @@ test-output
 expo-env.d.ts
 
 .env
+.env.local
+.env.production
+.env.development
+
+servers.json
+pgadmin-servers.json

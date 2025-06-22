@@ -63,15 +63,15 @@ export class UserEntity implements User{
   emailVerified: boolean;
 
   @ApiProperty()
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   emailVerificationToken: string | null;
 
   @ApiProperty()
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   passwordResetToken: string | null;
 
   @ApiProperty()
-  @Column({ nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   passwordResetExpires: Date | null;
 
   @ApiProperty()

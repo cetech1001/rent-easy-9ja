@@ -40,11 +40,11 @@ import { SavedPropertyEntity } from '../entities/saved-property.entity';
           SavedPropertyEntity,
         ],
         synchronize: configService.get('NODE_ENV') !== 'production',
-        logging: configService.get('NODE_ENV') === 'development',
+        logging: /*configService.get('NODE_ENV') === 'development'*/ false,
         ssl:
-          configService.get('NODE_ENV') === 'production'
+          /*configService.get('NODE_ENV') === 'production'
             ? { rejectUnauthorized: false }
-            : false,
+            :*/ false,
       }),
       inject: [ConfigService],
     }),
