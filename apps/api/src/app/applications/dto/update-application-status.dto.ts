@@ -1,8 +1,8 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import {ApplicationStatus} from "@rent-easy-9ja/types";
+import {ApplicationStatus, UpdateApplicationStatusRequest} from "@rent-easy-9ja/types";
 
-export class UpdateApplicationStatusDto {
+export class UpdateApplicationStatusDto implements UpdateApplicationStatusRequest{
   @ApiProperty({ enum: ApplicationStatus, example: ApplicationStatus.APPROVED })
   @IsEnum(ApplicationStatus)
   status: ApplicationStatus;

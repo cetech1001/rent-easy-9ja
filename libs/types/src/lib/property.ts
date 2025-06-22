@@ -65,3 +65,54 @@ export interface SavedProperty {
   property: Property;
   propertyId: string;
 }
+
+export interface PropertyQueryParams {
+  page?: number;
+  limit?: number;
+  city?: string;
+  state?: string;
+  type?: PropertyType;
+  minPrice?: number;
+  maxPrice?: number;
+  bedrooms?: number;
+  bathrooms?: number;
+  amenities?: string[];
+  status?: PropertyStatus;
+  search?: string;
+}
+
+export interface CreatePropertyRequest {
+  title: string;
+  description: string;
+  type: PropertyType;
+  price: number;
+  address: string;
+  city: string;
+  state: string;
+  country?: string;
+  latitude?: number;
+  longitude?: number;
+  bedrooms: number;
+  bathrooms: number;
+  area?: number;
+  parking?: number;
+  images?: string[];
+  amenities?: Amenities;
+  status?: PropertyStatus;
+}
+
+export interface PropertiesResponse {
+  properties: Property[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    pages: number;
+  };
+}
+
+export interface PopularLocation {
+  city: string;
+  state: string;
+  count: number;
+}

@@ -5,9 +5,9 @@ import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { UserEntity } from '../../entities/user.entity';
 import { JwtStrategy } from './strategies';
 import { EmailService } from '../email/email.service';
+import {UserEntity} from "../../entities";
 
 @Module({
   imports: [

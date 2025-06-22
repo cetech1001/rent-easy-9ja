@@ -25,3 +25,26 @@ export interface Application {
   property: Property;
   propertyId: string;
 }
+
+export interface CreateApplicationRequest {
+  propertyId: string;
+  message?: string;
+  documents?: {
+    idCard?: string;
+    proofOfIncome?: string;
+    references?: string[];
+  };
+}
+
+export interface UpdateApplicationStatusRequest {
+  status: ApplicationStatus;
+  landlordNotes?: string;
+}
+
+export interface ApplicationStats {
+  total: number;
+  pending: number;
+  approved: number;
+  rejected: number;
+  withdrawn: number;
+}

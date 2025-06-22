@@ -1,8 +1,8 @@
 import { IsEmail, IsString, MinLength, IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import {UserRole} from "@rent-easy-9ja/types";
+import {RegisterRequest, UserRole} from "@rent-easy-9ja/types";
 
-export class RegisterDto {
+export class RegisterDto implements RegisterRequest{
   @ApiProperty({ example: 'john.doe@example.com' })
   @IsEmail()
   email: string;

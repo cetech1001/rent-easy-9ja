@@ -2,10 +2,6 @@
   "name": "@rent-easy-9ja/source",
   "version": "0.0.0",
   "license": "MIT",
-  "engines": {
-    "node": "22.x",
-    "npm": "11.x"
-  },
   "private": true,
   "dependencies": {
     "@expo/metro-config": "~0.19.4",
@@ -19,6 +15,7 @@
     "@nestjs/swagger": "^11.2.0",
     "@nestjs/throttler": "^6.4.0",
     "@nestjs/typeorm": "^11.0.0",
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-navigation/native": "^7.1.6",
     "@react-navigation/native-stack": "^7.3.10",
     "axios": "^1.6.0",

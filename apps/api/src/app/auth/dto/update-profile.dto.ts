@@ -1,7 +1,8 @@
 import { IsString, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import {UpdateProfileRequest} from "@rent-easy-9ja/types";
 
-export class UpdateProfileDto {
+export class UpdateProfileDto implements UpdateProfileRequest{
   @ApiProperty({ example: 'John Doe', required: false })
   @IsOptional()
   @IsString()

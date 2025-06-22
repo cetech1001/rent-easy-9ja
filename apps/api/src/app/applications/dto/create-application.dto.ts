@@ -1,6 +1,7 @@
 import { IsString, IsOptional, IsObject, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
+import {CreateApplicationRequest} from "@rent-easy-9ja/types";
 
 class DocumentsDto {
   @ApiProperty({ example: 'id-card-url.jpg', required: false })
@@ -19,7 +20,7 @@ class DocumentsDto {
   references?: string[];
 }
 
-export class CreateApplicationDto {
+export class CreateApplicationDto implements CreateApplicationRequest{
   @ApiProperty({ example: 'uuid-of-property' })
   @IsUUID()
   propertyId: string;

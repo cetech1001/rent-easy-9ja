@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {ApplicationEntity, PropertyEntity, UserEntity} from '../../entities';
 import { CreateApplicationDto, UpdateApplicationStatusDto } from './dto';
-import {ApplicationStatus, PropertyStatus, UserRole} from "@rent-easy-9ja/types";
+import {ApplicationStats, ApplicationStatus, PropertyStatus, UserRole} from "@rent-easy-9ja/types";
 
 @Injectable()
 export class ApplicationsService {
@@ -166,7 +166,7 @@ export class ApplicationsService {
       .groupBy('application.status')
       .getRawMany();
 
-    const formattedStats = {
+    const formattedStats: ApplicationStats = {
       total: 0,
       pending: 0,
       approved: 0,
@@ -177,7 +177,7 @@ export class ApplicationsService {
     stats.forEach(stat => {
       const count = parseInt(stat.count);
       formattedStats.total += count;
-      formattedStats[stat.status] = count;
+      formattedStats[stat.status as keyof ApplicationStats] = count;
     });
 
     return formattedStats;

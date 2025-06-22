@@ -9,9 +9,9 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import {PropertyStatus, PropertyType} from "@rent-easy-9ja/types";
+import {PropertyQueryParams, PropertyStatus, PropertyType} from "@rent-easy-9ja/types";
 
-export class PropertyQueryDto {
+export class PropertyQueryDto implements PropertyQueryParams{
   @ApiProperty({ required: false, example: 1 })
   @IsOptional()
   @Type(() => Number)

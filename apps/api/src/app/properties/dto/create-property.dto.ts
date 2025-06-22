@@ -11,9 +11,9 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import {PropertyStatus, PropertyType} from "@rent-easy-9ja/types";
+import {Amenities, CreatePropertyRequest, PropertyStatus, PropertyType} from "@rent-easy-9ja/types";
 
-class AmenitiesDto {
+class AmenitiesDto implements Amenities{
   @ApiProperty({ example: true })
   @IsBoolean()
   furnished: boolean;
@@ -47,7 +47,7 @@ class AmenitiesDto {
   generator: boolean;
 }
 
-export class CreatePropertyDto {
+export class CreatePropertyDto implements CreatePropertyRequest{
   @ApiProperty({ example: 'Luxury 3 Bedroom Apartment' })
   @IsString()
   title: string;
