@@ -43,7 +43,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "tailwindcss": "^3.4.17",
-    "typeorm": "^0.3.25"
+    "typeorm": "^0.3.25",
+    "expo-constants": "~17.0.8"
   },
   "devDependencies": {
     "@expo/cli": "~0.21.8",

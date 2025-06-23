@@ -1,13 +1,13 @@
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import {Text, TouchableOpacity} from "react-native";
 import React, {Dispatch, FC, SetStateAction, useMemo} from "react";
-import {AccessRole} from "../../../helper";
+import {UserRole} from "@rent-easy-9ja/types";
 
 
 interface IProps {
-  role: AccessRole;
-  activeRole: AccessRole;
-  setRole: Dispatch<SetStateAction<AccessRole>>;
+  role: UserRole;
+  activeRole: UserRole;
+  setRole: Dispatch<SetStateAction<UserRole>>;
   size?: 'lg';
 }
 
@@ -24,7 +24,7 @@ export const RoleTab: FC<IProps> = (props) => {
     <TouchableOpacity onPress={() => props.setRole(props.role)}
                       className={`flex-1 py-3 px-4 ${props.size === 'lg' ? 'rounded-2xl h-28' : 'rounded-xl'} border-2 flex-col items-center justify-center ${roleClass}`}>
       <FontAwesome5
-        name={props.role === AccessRole.tenant ? "house-user" : "key"}
+        name={props.role === UserRole.TENANT ? "house-user" : "key"}
         size={20}
         color={props.role === props.activeRole ? "#7e22ce" : "#9ca3af"}
         style={{ marginBottom: 4 }}

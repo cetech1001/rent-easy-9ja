@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
 
 export const API_CONFIG = {
-  BASE_URL: __DEV__ ? process.env.API_URL : process.env.REMOTE_API_URL,
+  BASE_URL: __DEV__ ? Constants.expoConfig?.extra?.API_BASE_URL : Constants.expoConfig?.extra?.API_BASE_URL_PROD,
   ENDPOINTS: {
     AUTH: {
       REGISTER: '/auth/register',
@@ -57,6 +58,7 @@ export class ApiService {
     includeAuth: boolean = true
   ): Promise<T> {
     const url = `${API_CONFIG.BASE_URL}${endpoint}`;
+    console.log("URL: ", url);
     const headers = await this.getHeaders(includeAuth);
 
     const config: RequestInit = {

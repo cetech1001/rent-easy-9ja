@@ -38,10 +38,7 @@ import {ApplicationEntity, PropertyEntity, SavedPropertyEntity, UserEntity} from
         ],
         synchronize: /*configService.get('NODE_ENV') !== 'production'*/true,
         logging: configService.get('NODE_ENV') === 'development',
-        ssl:
-          configService.get('NODE_ENV') === 'production'
-            ? { rejectUnauthorized: false }
-            : false,
+        ssl: { rejectUnauthorized: false },
       }),
       inject: [ConfigService],
     }),

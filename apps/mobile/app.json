@@ -44,6 +44,8 @@
     },
     "plugins": [],
     "extra": {
+      "API_BASE_URL": "http://localhost:3000/api",
+      "API_BASE_URL_PROD": "https://rent-easy-9ja-api.onrender.com/api",
       "eas": {
         "projectId": "24757c29-3e2f-48eb-bdc1-063e574a7bc8"
       }

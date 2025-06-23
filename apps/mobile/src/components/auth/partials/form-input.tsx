@@ -35,7 +35,7 @@ export const FormInput: FC<IProps> = (props) => {
         <TextInput onFocus={() => setIsSelected(true)} onBlur={() => setIsSelected(false)}
                    keyboardType={props.type} secureTextEntry={props.secureTextEntry && !showContent} value={props.value}
                    className={`w-full pl-10 pr-4 py-3 ${props.height || 'h-11'} rounded-lg border text-base-900 ${colorScheme === 'light' && 'bg-white'} ${isSelected ? 'border-purple-600' : 'border-gray-200'}`}
-                   placeholder={props.placeholder} onChangeText={props.setValue}
+                   placeholder={props.placeholder} onChangeText={props.setValue} autoCapitalize={'none'}
         />
         {props.secureTextEntry && (
           <TouchableOpacity

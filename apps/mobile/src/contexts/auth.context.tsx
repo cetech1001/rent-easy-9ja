@@ -89,7 +89,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  // Check for existing authentication on app start
   useEffect(() => {
     checkAuthStatus();
   }, []);
@@ -104,7 +103,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         if (user) {
           dispatch({ type: 'AUTH_SUCCESS', payload: user });
         } else {
-          // Token exists but no user data, try to fetch
           const userData = await AuthService.getProfile();
           dispatch({ type: 'AUTH_SUCCESS', payload: userData });
         }
@@ -157,7 +155,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       dispatch({ type: 'AUTH_LOGOUT' });
     } catch (error) {
       console.error('Logout error:', error);
-      // Force logout even if API call fails
       dispatch({ type: 'AUTH_LOGOUT' });
     }
   };
@@ -166,7 +163,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     try {
       dispatch({ type: 'AUTH_START' });
       await AuthService.verifyEmail({ token });
-      dispatch({ type: 'AUTH_LOGOUT' }); // User needs to login after verification
+      dispatch({ type: 'AUTH_LOGOUT' });
     } catch (error) {
       dispatch({
         type: 'AUTH_ERROR',
@@ -194,7 +191,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     try {
       dispatch({ type: 'AUTH_START' });
       await AuthService.resetPassword({ token, password });
-      dispatch({ type: 'AUTH_LOGOUT' }); // User needs to login with new password
+      dispatch({ type: 'AUTH_LOGOUT' });
     } catch (error) {
       dispatch({
         type: 'AUTH_ERROR',
